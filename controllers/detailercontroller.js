@@ -102,7 +102,7 @@ router.put('/updateprofile', function(req, res) {
         cities: cities,
         state: state
 
-    },{where: {id: req.user.id}}
+    },{where: {userId: req.user.id}}
     ).then(
         function updateSuccess() { //8
             res.json({
@@ -118,8 +118,8 @@ router.put('/updateprofile', function(req, res) {
 //find detailers based on location THIS ONE IS GOING TO REQUIRE EXTENSIVE TESTING AND MAYBE SOME ADJUSTMENT TO MAKE SURE THAT THE CITIES IN ARRAY PART WORKS.
 
 router.get('/searchbylocation', (req, res) => {
-    Detailer.findAll({ where: {state: req.state, cities: { [Op.contains]: req.cities}}})
-       .then(posts => res.status(200).json(posts))
+    Detailer.findAll({ where: {state: req.body.state, cities: req.body.cities}})
+       .then(users => res.status(200).json(users))
        .catch(err => res.status(500).json({ error: err }))
 });
 
