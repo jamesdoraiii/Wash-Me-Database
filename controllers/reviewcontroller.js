@@ -8,8 +8,8 @@ var Review = sequelize.import('../models/review');
 
 router.post('/create', (req, res) => {
     const newReview = {
-        idOfReviewer: req.user.id,
-        idOfDetailerBeingReviewed: req.body.idOfDetailerBeingReviewed,
+        userId: req.user.id,
+        detailerId: req.body.detailerId,
         reviewContent: req.body.reviewContent,
         numberOfStars: req.body.numberOfStars
     };
@@ -34,7 +34,7 @@ router.delete('/deletereview/:id', (req, res) => {
 //This router will find all reviews that a user has made
 
 router.get('/finduserreviews', (req, res) => {
-    Review.findAll({ where: { idOfReviewer: req.user.id} })
+    Review.findAll({ where: { userId: req.user.id} })
        .then(reviews => res.status(200).json(reviews))
        .catch(err => res.status(500).json({ error: err }))
 });
@@ -43,7 +43,7 @@ router.get('/finduserreviews', (req, res) => {
 //This router will find all reviews made about a certain detailer
 
 router.get('/finddetailerreviews/:id', (req, res) => {
-    Review.findAll({ where: { idOfDetailerBeingReviewed: req.params.id} })
+    Review.findAll({ where: { detailerId: req.params.id} })
        .then(reviews => res.status(200).json(reviews))
        .catch(err => res.status(500).json({ error: err }))
 });

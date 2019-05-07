@@ -24,10 +24,10 @@ app.use('/user', user)
  * PROTECTED ROUTES BELOW
 **************************/
 
-// app.use(require('./middleware/validate-session'));
-// app.use('/contact', contact);
-// app.use('/review', review);
-// app.use('/detailer', detailer);
+app.use(require('./middleware/validate-session'));
+app.use('/contact', contact);
+app.use('/review', review);
+app.use('/detailer', detailer);
 
 app.listen(3000, function(){
     console.log('App is listening on 3000.') 

@@ -10,7 +10,7 @@ const { Op } = require('sequelize');
 
 router.post('/createdetailerprofile', (req, res) => {
     const newDetailer = {
-        userid: req.user.id,
+        userId: req.user.id,
         linkToImgur: req.body.detailer.linkToImgur,
         servicesOffered: req.body.detailer.servicesOffered,
         pricingInformation: req.body.detailer.pricingInformation,
@@ -42,11 +42,11 @@ router.delete('/deletedetailerprofile/:id', (req, res) => {
 
 //This router updates a detailer profile so that it is discoverable
 
-router.put('/discoverableon/:id', (req,res) =>{
+router.put('/discoverableon', (req,res) =>{
 
         Detailer.update({
             discoverable: true
-        }, {where: {id: req.params.id}})
+        }, {where: {userId: req.user.id}})
         .then(
             function updateSuccess(updatedLog) { //8
                 res.json({
@@ -62,11 +62,11 @@ router.put('/discoverableon/:id', (req,res) =>{
 
 //This router updates a detailer profile so that it is NOT discoverable
 
-router.put('/discoverableoff/:id', (req,res) =>{
+router.put('/discoverableoff', (req,res) =>{
 
         Detailer.update({
             discoverable: false
-        }, {where: {id: req.params.id}})
+        }, {where: {userId: req.user.id}})
         .then(
             function updateSuccess(updatedLog) { //8
                 res.json({
@@ -82,7 +82,7 @@ router.put('/discoverableoff/:id', (req,res) =>{
 
 //This router updates the information in a specific detailer profile
 
-router.put('/updateprofile/:id', function(req, res) {
+router.put('/updateprofile', function(req, res) {
 
     var linkToImgur = req.body.detailer.linkToImgur;
     var servicesOffered =  req.body.detailer.servicesOffered;
@@ -102,7 +102,7 @@ router.put('/updateprofile/:id', function(req, res) {
         cities: cities,
         state: state
 
-    },{where: {id: req.params.id}}
+    },{where: {id: req.user.id}}
     ).then(
         function updateSuccess() { //8
             res.json({

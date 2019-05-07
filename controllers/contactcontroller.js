@@ -8,8 +8,8 @@ var Contact = sequelize.import('../models/contact');
 
 router.post('/create', (req, res) => {
     const newContact = {
-        useridofcustomer: req.user.id,
-        useridofdetailer: req.body. useridofdetailer,
+        userId: req.user.id,
+        detailerId: req.body.detailerId,
         message: req.body.message
     };
 
@@ -17,5 +17,18 @@ router.post('/create', (req, res) => {
         .then(newContact => res.status(200).json(newContact))
         .catch(err => res.status(500).json({ error: err }))
 });
+
+router.get('/findusercontacts', (req, res) => {
+    Contact.findAll({ where: { userId: req.user.id} })
+       .then(reviews => res.status(200).json(reviews))
+       .catch(err => res.status(500).json({ error: err }))
+});
+
+router.get('/finddetailercontacts', (req, res) => {
+    Contact.findAll({ where: { detailerId: req.user.id} })
+       .then(reviews => res.status(200).json(reviews))
+       .catch(err => res.status(500).json({ error: err }))
+});
+
 
 module.exports = router;

@@ -1,9 +1,5 @@
 module.exports = function(sequelize, DataTypes){
     return sequelize.define('detailer', {
-      userid: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
       linkToImgur: {
         type: DataTypes.STRING,
         allowNull: false
@@ -24,6 +20,7 @@ module.exports = function(sequelize, DataTypes){
         type: DataTypes.BOOLEAN,
         allowNull: false
       },
+      
       //FIGURE OUT WHY THIS CANT BE DATA TYPE ARRAY
       cities: {
         type: DataTypes.STRING,
