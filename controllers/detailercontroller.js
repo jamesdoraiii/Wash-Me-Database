@@ -117,7 +117,7 @@ router.put('/updateprofile', function(req, res) {
 
 //find detailers based on location THIS ONE IS GOING TO REQUIRE EXTENSIVE TESTING AND MAYBE SOME ADJUSTMENT TO MAKE SURE THAT THE CITIES IN ARRAY PART WORKS.
 
-router.get('/searchbylocation', (req, res) => {
+router.post('/searchbylocation', (req, res) => {
     Detailer.findAll({ where: {state: req.body.state, cities: req.body.cities}})
        .then(users => res.status(200).json(users))
        .catch(err => res.status(500).json({ error: err }))
