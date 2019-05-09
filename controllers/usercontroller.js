@@ -75,11 +75,11 @@ router.post('/signin', function (req, res) {
 
 //This router sets isDetailer to true
 
-router.put('/isdetaileron', (req,res) =>{
+router.get('/isdetaileron/:id', (req,res) =>{
 
   User.update({
     isDetailer: true
-  }, {where: {userId: req.user.id}})
+  }, {where: {id: req.params.id}})
   .then(
       function updateSuccess(updatedLog) { //8
           res.json({
@@ -95,11 +95,11 @@ router.put('/isdetaileron', (req,res) =>{
 
 //This router sets isDetailer to false
 
-router.put('/isdetaileroff', (req,res) =>{
+router.get('/isdetaileroff/:id', (req,res) =>{
 
   User.update({
     isDetailer: false
-  }, {where: {userId: req.user.id}})
+  }, {where: {id: req.params.id}})
   .then(
       function updateSuccess(updatedLog) { //8
           res.json({

@@ -127,8 +127,8 @@ router.post('/searchbylocation', (req, res) => {
 
 //pull up one detailers's information using detailerid
 
-router.get('/findspecificdetailer/:id', (req, res) => {
-    Detailer.findAll({ where: { id: req.params.id} })
+router.post('/findspecificdetailer/:id', (req, res) => {
+    Detailer.findOne({ where: { userId: req.params.id} })
        .then(post => res.status(200).json(post))
        .catch(err => res.status(500).json({ error: err }))
 });
