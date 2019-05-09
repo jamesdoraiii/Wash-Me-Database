@@ -15,6 +15,7 @@ module.exports = function(req, res, next) {
                 //5
                 //below this basically finds a the user which matches the token, then next sends it to any routers that use this validation.
                 if(decoded){
+                    console.log('attempting to find user')
                     User.findOne({where: { id: decoded.id}}).then(user => { //6
                         req.user = user; //7
                         next();
