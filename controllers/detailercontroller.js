@@ -19,6 +19,9 @@ router.post('/createdetailerprofile', (req, res) => {
         cities: req.body.detailer.cities,
         state: req.body.detailer.state,
         discoverable: true,
+        emailAddress: req.user.emailAddress,
+        fName: req.user.fName,
+        lName: req.user.lName
     };
  
     Detailer.create(newDetailer)

@@ -34,6 +34,19 @@ module.exports = function(sequelize, DataTypes){
         type: DataTypes.BOOLEAN,
         allowNull: false
       },
+      emailAddress: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+      },
+      fName: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      lName: {
+        type: DataTypes.STRING,
+        allowNull: false
+      }
 
 
     })
