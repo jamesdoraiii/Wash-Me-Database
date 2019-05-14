@@ -1,21 +1,31 @@
 module.exports = function(sequelize, DataTypes){
     return sequelize.define('review', {
-      // idOfReviewer: {
-      //   type: DataTypes.INTEGER,
-      //   allowNull: false
-      // },
-      // idOfDetailerBeingReviewed: {
-      //   type: DataTypes.INTEGER,
-      //   allowNull: false
-      // },
       reviewContent: {
         type: DataTypes.TEXT,
         allowNull: false
       },
       numberOfStars: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      reviewerFname: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      reviewerLname: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      detailerFname: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      detailerLname: {
+        type: DataTypes.STRING,
         allowNull: false
       }
+
+
 
     })
   }

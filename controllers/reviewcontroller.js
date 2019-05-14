@@ -10,7 +10,11 @@ router.post("/create", (req, res) => {
     userId: req.user.id,
     detailerId: req.body.detailerId,
     reviewContent: req.body.reviewContent,
-    numberOfStars: req.body.numberOfStars
+    numberOfStars: req.body.numberOfStars,
+    detailerFname: req.body.detailerFname,
+    detailerLname: req.body.detailerLname,
+    reviewerFname: req.user.fName,
+    reviewerLname: req.user.lName
   };
 
   Review.create(newReview)

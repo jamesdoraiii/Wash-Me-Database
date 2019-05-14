@@ -10,7 +10,8 @@ router.post('/create', (req, res) => {
     const newContact = {
         userId: req.user.id,
         detailerId: req.body.detailerId,
-        message: req.body.message
+        detailerFname: req.body.detailerFname,
+        detailerLname: req.body.detailerLname
     };
 
     Contact.create(newContact)
