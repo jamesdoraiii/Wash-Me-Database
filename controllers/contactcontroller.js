@@ -31,5 +31,15 @@ router.get('/finddetailercontacts', (req, res) => {
        .catch(err => res.status(500).json({ error: err }))
 });
 
+router.delete('/deletecontactunderprofile/:id', (req, res) => {
+    Contact.destroy({ where: {detailerId: req.params.id }})
+    .then(deleted =>
+      res.status(200).json({
+        messahe:"contacts succesfully deleted"
+      })
+      )
+      .catch(err => res.status(500).json({ error: err}));
+  })
+
 
 module.exports = router;

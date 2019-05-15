@@ -34,6 +34,16 @@ router.delete("/deletereview/:id", (req, res) => {
     .catch(err => res.status(500).json({ error: err }));
 });
 
+router.delete('/deletereviewunderprofile/:id', (req, res) => {
+  Review.destroy({ where: {detailerId: req.params.id }})
+  .then(deleted =>
+    res.status(200).json({
+      messahe:"reviews succesfully deleted"
+    })
+    )
+    .catch(err => res.status(500).json({ error: err}));
+})
+
 //This router will find all reviews that a user has made
 
 router.get("/finduserreviews", (req, res) => {

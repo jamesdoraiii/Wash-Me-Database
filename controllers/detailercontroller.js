@@ -130,8 +130,14 @@ router.post('/searchbylocation', (req, res) => {
 
 //pull up one detailers's information using detailerid
 
-router.post('/findspecificdetailer/:id', (req, res) => {
+router.get('/findspecificdetailer/:id', (req, res) => {
     Detailer.findOne({ where: { userId: req.params.id} })
+       .then(post => res.status(200).json(post))
+       .catch(err => res.status(500).json({ error: err }))
+});
+
+router.get('/findspecificdetaileruserpage/:id', (req, res) => {
+    Detailer.findOne({ where: { id: req.params.id} })
        .then(post => res.status(200).json(post))
        .catch(err => res.status(500).json({ error: err }))
 });
