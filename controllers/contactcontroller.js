@@ -20,13 +20,13 @@ router.post('/create', (req, res) => {
 });
 
 router.get('/findusercontacts', (req, res) => {
-    Contact.findAll({ where: { userId: req.user.id} })
+    Contact.findAll({ where: { userId: req.user.id}, order: [['id', 'DESC']] })
        .then(reviews => res.status(200).json(reviews))
        .catch(err => res.status(500).json({ error: err }))
 });
 
 router.get('/finddetailercontacts', (req, res) => {
-    Contact.findAll({ where: { detailerId: req.user.id} })
+    Contact.findAll({ where: { detailerId: req.user.id}, order: [['id', 'DESC']] })
        .then(reviews => res.status(200).json(reviews))
        .catch(err => res.status(500).json({ error: err }))
 });
