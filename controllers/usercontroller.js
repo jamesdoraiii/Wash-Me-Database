@@ -28,7 +28,7 @@ router.post('/createuser', function (req, res) {
   }).then(
     function createSuccess(user) {
 
-      var token = jwt.sign({id: user.id}, "secret", {expiresIn: 60*60*24});
+      var token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: 60*60*24});
 
       res.json({
         user: user,
@@ -52,7 +52,7 @@ router.post('/signin', function (req, res) {
                     
                     if (matches) {
                       
-                      var token = jwt.sign({id: user.id}, "secret", {expiresIn: 60*60*24 });
+                      var token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: 60*60*24 });
                       res.json({  
                           user: user,
                           message: "successfully authenticated",

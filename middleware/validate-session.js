@@ -10,7 +10,7 @@ module.exports = function(req, res, next) {
         console.log(sessionToken) 
         if (!sessionToken) return res.status(403).send({ auth: false, message: 'No token provided.' }); 
         else { 
-            jwt.verify(sessionToken, "secret", (err, decoded) => { 
+            jwt.verify(sessionToken, process.env.JWT_SECRET, (err, decoded) => { 
                 console.log(decoded);
                 //5
                 //below this basically finds a the user which matches the token, then next sends it to any routers that use this validation.
